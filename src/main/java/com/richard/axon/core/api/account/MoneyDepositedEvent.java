@@ -6,7 +6,7 @@ import lombok.Value;
  * Created on 2/10/2017.
  */
 @Value
-public class MoneyWithdrawnEvent extends BalanceUpdatedEvent{
+public class MoneyDepositedEvent extends BalanceUpdatedEvent {
     private final String accountId;
     private final String transactionId;
     private final int amount;

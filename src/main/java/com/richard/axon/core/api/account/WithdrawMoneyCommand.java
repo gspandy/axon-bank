@@ -11,5 +11,6 @@ public class WithdrawMoneyCommand {
 
     @TargetAggregateIdentifier
     private final String accountId;
+    private final String transactionId;
     private final int amount;
 }

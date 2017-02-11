@@ -26,22 +26,22 @@ public class AccountAggregateTest {
     @Test
     public void testWithdrawReasonableAmount() {
         fixture.given(new AccountCreatedEvent("1234", 1000))
-               .when(new WithdrawMoneyCommand("1234", 40))
-               .expectEvents(new MoneyWithdrawnEvent("1234", 40, -40));
+               .when(new WithdrawMoneyCommand("1234", "tx-1", 40))
+               .expectEvents(new MoneyWithdrawnEvent("1234", "tx-1", 40, -40));
     }
 
     @Test
     public void testWithdrawCrazyAmount() {
         fixture.given(new AccountCreatedEvent("1234", 1000))
-               .when(new WithdrawMoneyCommand("1234", 1001))
+               .when(new WithdrawMoneyCommand("1234", "tx-1", 1001))
                .expectNoEvents()
                .expectException(OverdraftLimitExceededException.class);
     }
 
     @Test
     public void withdrawTwice() {
-        fixture.given(new AccountCreatedEvent("1234", 1000), new MoneyWithdrawnEvent("1234", 999, -999))
-               .when(new WithdrawMoneyCommand("1234", 2))
+        fixture.given(new AccountCreatedEvent("1234", 1000), new MoneyWithdrawnEvent("1234", "tx-1", 999, -999))
+               .when(new WithdrawMoneyCommand("1234", "tx-1", 2))
                .expectNoEvents()
                .expectException(OverdraftLimitExceededException.class);
     }

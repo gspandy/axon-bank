@@ -32,6 +32,10 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('org.springframework.boot:spring-boot-devtools')
 
+    // https://mvnrepository.com/artifact/javax.inject/javax.inject
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
+
+
     compile group: 'org.axonframework', name: 'axon-spring', version: '3.0.1'
     compile group: 'org.axonframework', name: 'axon-core', version: '3.0.1'
 

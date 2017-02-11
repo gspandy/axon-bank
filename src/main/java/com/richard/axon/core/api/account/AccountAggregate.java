@@ -36,7 +36,7 @@ public class AccountAggregate {
     public void handle(WithdrawMoneyCommand command) {
         //should no do any state changes here
         if (balance + overdraftLimit >= command.getAmount())
-            apply(new MoneyWithdrawnEvent(accountId, command.getAmount(), balance - command.getAmount()));
+            apply(new MoneyWithdrawnEvent(accountId, command.getTransactionId(), command.getAmount(), balance - command.getAmount()));
         else
             throw new OverdraftLimitExceededException("Exceeded Overdraft.");
     }
